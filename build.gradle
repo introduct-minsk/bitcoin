@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'io.freefair.lombok' version '5.3.0'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.example.bitcoin.Application'
+    }
+}
+
+shadowJar {
+    minimize()
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.apache.httpcomponents.client5:httpclient5:5.0.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.2'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.2'
+    implementation 'org.slf4j:slf4j-jdk14:1.7.25'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
